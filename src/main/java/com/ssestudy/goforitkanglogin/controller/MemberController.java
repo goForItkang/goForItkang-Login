@@ -38,7 +38,7 @@ public class MemberController {
             return ResponseEntity.status(401).body("사용자 정보가 없습니다");
         }
         HttpHeaders headers = new HttpHeaders();
-        String token = jwtUtil.createToken(result.getUsername(),"USER"); //차후 정보를 변경해줘야함
+        String token = jwtUtil.createToken(result.getUsername(),((MemberDTO)result).getRole().name());
         headers.set("Authorization","Bearer "+token);
         return ResponseEntity.ok().headers(headers).body(token);
     }
