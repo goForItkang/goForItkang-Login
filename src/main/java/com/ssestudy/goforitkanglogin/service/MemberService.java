@@ -19,6 +19,7 @@ public class MemberService {
         // password 암호화
         member.setPassword(passwordEncoder.encode(memberDTO.getPassword()));
         member.setMemberName(memberDTO.getMemberName());
+        member.setRole(memberDTO.getRole());
         memberRepository.save(member);
     }
 

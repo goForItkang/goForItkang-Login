@@ -1,5 +1,6 @@
 package com.ssestudy.goforitkanglogin.dto;
 
+import com.ssestudy.goforitkanglogin.entity.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,11 @@ public class MemberDTO implements UserDetails {
 
     private String memberName;
 
+    private Roles role; // 권한 넣을꺼
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(()->"ROLE_"+role.name());
     }
 
     @Override

@@ -19,12 +19,12 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(secretKey.getBytes());
     } //서명 키를 만듬
 
-    public String createToken(String username) {
+    public String createToken(String username,String role) {
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE) //header 타입을 jwt
                 .setSubject(username) // 사용자 이름 설정
                 .claim("username",username)
-                .claim("role", "USER")
+                .claim("role", role)
                 .setIssuedAt(new Date()) // 발급 시간
                 .setExpiration(new Date(System.currentTimeMillis()+1000*60*24)) // 만료 시간
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256) // 서명
